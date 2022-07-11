@@ -19,8 +19,8 @@ export class ImgComponent implements OnInit,OnChanges,AfterViewInit,OnDestroy {
 
   @Output() loaded = new EventEmitter<string>();
   imageDefault = 'https://www.w3schools.com/howto/img_avatar2.png';
-  counter = 0;
-  counterFn: number | undefined;
+  //counter = 0;
+  //counterFn: number | undefined;
 
 
   constructor() {
@@ -44,17 +44,17 @@ export class ImgComponent implements OnInit,OnChanges,AfterViewInit,OnDestroy {
     console.log('ngOnInit', 'imgValue =>',this.img);
 
     //Almacenamos en una variable el intervalo
-    this.counterFn = window.setInterval(()=> {
+    /*this.counterFn = window.setInterval(()=> {
       this.counter += 1;
       console.log('run counter');
     },1000);
-
+*/
   }
    /////
    ngOnDestroy(): void {
     console.log('ngOnDestroy');
     //Limpiamos la variable cuadno destruimos
-    window.clearInterval(this.counterFn);
+    //window.clearInterval(this.counterFn);
   }
   ////
   ngAfterViewInit(): void {
