@@ -8,7 +8,14 @@ import { OutletContext } from '@angular/router';
 })
 export class ImgComponent implements OnInit,OnChanges,AfterViewInit,OnDestroy {
 
-  @Input() img: string = '';
+  img: string = '';
+  @Input('img') //Nos aseguramos que solo cambie cuando cambien el input de img
+  set changeImg(newImg:string){
+    this.img = newImg;
+    console.log('change just img =>',this.img);
+    //code
+  }
+  @Input() alt: string = '';
 
   @Output() loaded = new EventEmitter<string>();
   imageDefault = 'https://www.w3schools.com/howto/img_avatar2.png';
@@ -27,6 +34,7 @@ export class ImgComponent implements OnInit,OnChanges,AfterViewInit,OnDestroy {
       //before - during Render
       // changes inputs --run many times
       console.log('ngOnChanges', 'imgValue =>',this.img);
+      console.log(changes);
 
   }
   ngOnInit(): void {
