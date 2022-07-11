@@ -9,9 +9,12 @@ import { OutletContext } from '@angular/router';
 export class ImgComponent implements OnInit,OnChanges,AfterViewInit,OnDestroy {
 
   @Input() img: string = '';
-  @Output() loaded = new EventEmitter<string>();
 
+  @Output() loaded = new EventEmitter<string>();
   imageDefault = 'https://www.w3schools.com/howto/img_avatar2.png';
+  counter = 0;
+  counterFn: number | undefined;
+
 
   constructor() {
 
@@ -32,20 +35,28 @@ export class ImgComponent implements OnInit,OnChanges,AfterViewInit,OnDestroy {
     // No changes inputs here.
     console.log('ngOnInit', 'imgValue =>',this.img);
 
+    //Almacenamos en una variable el intervalo
+    this.counterFn = window.setInterval(()=> {
+      this.counter += 1;
+      console.log('run counter');
+    },1000);
+
+  }
+   /////
+   ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+    //Limpiamos la variable cuadno destruimos
+    window.clearInterval(this.counterFn);
   }
   ////
   ngAfterViewInit(): void {
     //only after render
     //handler childs
     console.log('ngAfterViewInit');
-    throw new Error('Method not implemented.');
+
   }
 
-  /////
-  ngOnDestroy(): void {
-    console.log('ngOnDestroy');
-    throw new Error('Method not implemented.');
-  }
+
 
 
 
